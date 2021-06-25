@@ -424,6 +424,8 @@ Function New-ADXDataConnection() {
 
         $AdxClusterName = $AdxClusterURL.split('.')[0].split('//')[1].Trim()
         
+        #region Troubleshooting for CX
+        
         if("" -eq $AdxClusterName)
         {
             Write-Verbose "`$AdxClusterURL: $AdxClusterUrl"
@@ -432,12 +434,13 @@ Function New-ADXDataConnection() {
             $AdxClusterName = $AdxClusterName.split('//')[1].Trim()
             Write-Verbose "`$AdxClusterName: $AdxClusterName"
         
-            # Troubleshooting for TMNA
+
             if("" -eq $AdxClusterName)
             {
                 $AdxClusterName = "sentinellogsadx"
             }
         }
+        #endregion Troubleshooting for CX
 
         Write-Verbose "`$AdxClusterName: $AdxClusterName"
         foreach ($AdxEH in $AdxEventHubs) {
